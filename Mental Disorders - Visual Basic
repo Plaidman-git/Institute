@@ -1,0 +1,171 @@
+Public Class PsycHelper
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        Dim r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, r11, r12 As Integer
+        Dim v1, v2, v3, v4, v5, v6, v7, v8, v9, v10, v11, v12 As Single
+        r1 = 0
+        r2 = 0
+        r3 = 0
+        r4 = 0
+        r5 = 0
+        r6 = 0
+        r7 = 0
+        r8 = 0
+        r9 = 0
+        r10 = 0
+        r11 = 0
+        r12 = 0
+        If CheckBox1.Checked = True Then ' Бессонница
+            r1 = r1 + 1
+            r2 = r2 + 1
+            r3 = r3 + 1
+            r4 = r4 + 1
+        End If
+        If CheckBox2.Checked = True Then ' Повышенная тревожность
+            r1 = r1 + 1
+            r2 = r2 + 1
+            r3 = r3 + 1
+            r4 = r4 + 1
+        End If
+        If CheckBox3.Checked = True Then ' Панические атаки
+            r2 = 3
+        End If
+        If CheckBox4.Checked = True Then ' Тревога при социальном взаимодействии
+            r3 = r3 + 1
+        End If
+        If CheckBox5.Checked = True Then ' Беспокойство в связи с разлукой
+            r4 = r4 + 1
+        End If
+        If CheckBox6.Checked = True Then ' Продолжительная грусть
+            r5 = r5 + 1
+            r6 = r6 + 1
+            r7 = r7 + 1
+        End If
+        If CheckBox7.Checked = True Then ' Раздражительность
+            r5 = r5 + 1
+            r6 = r6 + 1
+            r7 = r7 + 1
+            r11 = r11 + 1
+        End If
+        If CheckBox8.Checked = True Then ' Чувство опустошённости
+            r5 = r5 + 1
+            r6 = r6 + 1
+            r7 = r7 + 1
+        End If
+        If CheckBox9.Checked = True Then ' Потеря интереса ко всем занятиям
+            r5 = r5 + 1
+            r6 = r6 + 1
+            r7 = r7 + 1
+        End If
+        If CheckBox10.Checked = True Then ' Снижение концентрации, рассеянность
+            r5 = r5 + 1
+            r6 = r6 + 1
+            r7 = r7 + 1
+        End If
+        If CheckBox11.Checked = True Then ' Навязчивое чувство вины
+            r5 = r5 + 1
+            r6 = r6 + 1
+            r7 = r7 + 1
+        End If
+        If CheckBox12.Checked = True Then ' Низкая самооценка
+            r5 = r5 + 1
+            r6 = r6 + 1
+            r7 = r7 + 1
+        End If
+        If CheckBox13.Checked = True Then ' Отсутствие веры в будущее
+            r5 = r5 + 1
+            r6 = r6 + 1
+            r7 = r7 + 1
+        End If
+        If CheckBox15.Checked = True Then ' Изменение аппетита
+            r5 = r5 + 1
+            r6 = r6 + 1
+            r7 = r7 + 1
+            r10 = r10 + 1
+        End If
+        If CheckBox16.Checked = True Then ' Усталость, измотанность, упадок сил
+            r5 = r5 + 1
+            r6 = r6 + 1
+            r7 = r7 + 1
+        End If
+        If CheckBox17.Checked = True Then ' Пониженное настроение
+            r5 = r5 + 1
+            r6 = r6 + 1
+            r7 = r7 + 1
+        End If
+        If CheckBox18.Checked = True Then ' Повышенное настроение
+            r7 = r7 + 1
+            r9 = r9 + 1
+        End If
+        If CheckBox19.Checked = True Then ' Стремление к деятельности
+            r7 = r7 + 1
+        End If
+        If CheckBox20.Checked = True Then ' Повышенная самооценка
+            r7 = r7 + 1
+        End If
+        If CheckBox21.Checked = True Then ' Снижение потребности во сне
+            r7 = r7 + 1
+        End If
+        If CheckBox22.Checked = True Then ' Повышенная разговорчивость
+            r7 = r7 + 1
+        End If
+        If CheckBox23.Checked = True Then ' Импульсивность
+            r7 = r7 + 1
+        End If
+        If CheckBox24.Checked = True Then ' Навязчивые воспоминания, кошмары
+            r8 = r8 + 1
+        End If
+        If CheckBox25.Checked = True Then ' Бредовые идеи
+            r9 = r9 + 1
+        End If
+        If CheckBox26.Checked = True Then ' Галлюцинации
+            r9 = r9 + 1
+        End If
+        If CheckBox27.Checked = True Then ' Озабоченность едой, массой тела
+            r10 = r10 + 1
+        End If
+        If CheckBox28.Checked = True Then ' Враждебное поведение, злость к окружающим
+            r11 = r11 + 1
+        End If
+        If CheckBox29.Checked = True Then ' Трудности в освоении навыков
+            r12 = r12 + 1
+        End If
+        If CheckBox30.Checked = True Then ' Трудности с коммуникацией
+            r3 = r3 + 1
+            r12 = r12 + 1
+        End If
+        If CheckBox31.Checked = True Then ' Негибкий круг интересов
+            r12 = r12 + 1
+        End If
+        If CheckBox14.Checked = True Then ' Мысли о смерти и самоубийстве
+            r5 = 12 ' Если есть такие мысли, значит депрессия точно есть
+            r7 = r7 + 1
+        End If
+        If r5 = 0 Then r7 = 0 ' Если нет признаков депрессии, то это точно не биполярное расстройство
+        v1 = r1 / 2 * 100
+        v2 = r2 / 3 * 100
+        v3 = r3 / 4 * 100
+        v4 = r4 / 3 * 100
+        v5 = r5 / 12 * 100
+        v6 = r6 / 11 * 100
+        v7 = r7 / 18 * 100
+        v8 = r8 / 1 * 100
+        v9 = r9 / 2 * 100
+        v10 = r10 / 2 * 100
+        v11 = r11 / 2 * 100
+        v12 = r12 / 3 * 100
+        TextBox1.Text = CStr(v1)
+        TextBox2.Text = CStr(v2)
+        TextBox3.Text = CStr(v3)
+        TextBox4.Text = CStr(v4)
+        TextBox5.Text = CStr(v5)
+        TextBox6.Text = CStr(v6)
+        TextBox7.Text = CStr(v7)
+        TextBox8.Text = CStr(v8)
+        TextBox9.Text = CStr(v9)
+        TextBox10.Text = CStr(v10)
+        TextBox11.Text = CStr(v11)
+        TextBox12.Text = CStr(v12)
+    End Sub
+
+End Class
