@@ -1,0 +1,187 @@
+import pandas as pd
+import warnings
+import numpy as np
+import sys
+import datetime
+
+file_name = sys.argv[1]
+
+warnings.filterwarnings("ignore")
+
+excel = pd.ExcelFile(file_name)
+sheet_names = excel.sheet_names
+result = []
+
+
+def filter_list(lst):
+    filtered_list = [item for item in lst if "from" not in item and "to" not in item]
+    if len(filtered_list) == 1:
+        return filtered_list[0]
+    else:
+        return filtered_list if filtered_list != [] else ''
+
+
+def process_ranges(row_indexes, df):
+    ranges = {}
+    remaining_indexes = row_indexes.copy()  # Копируем список, чтобы не изменять исходный
+    upper_bound = df.index.min()
+    lower_bound = df.index.max()
+
+    if len(remaining_indexes) == 1:
+        ranges[remaining_indexes[0]] = upper_bound, lower_bound
+    else:
+        for i, row in enumerate(remaining_indexes):
+            if i == 0:  # Если первый элемент
+                upper = upper_bound
+                lower = remaining_indexes[i + 1] - 1
+            elif i == len(remaining_indexes) - 1:  # Если последний элемент
+                upper = remaining_indexes[i]
+                lower = lower_bound
+            else:
+                upper = remaining_indexes[i]
+                lower = remaining_indexes[i + 1] - 1
+            ranges[remaining_indexes[i]] = (upper, lower)
+    return ranges
+
+
+def clean_dict(d):
+    cleaned_dict = d.copy()
+    for key, value in d.items():
+        if type(value) == list:
+            cleaned_dict[key] = ';'.join(value)
+        if value is None or value == []:
+            cleaned_dict[key] = ''
+    return cleaned_dict
+
+
+for sheet_index in range(len(sheet_names)):
+    table_name = sheet_names[sheet_index]
+    df = excel.parse(table_name)
+    df.columns = df.loc[9]  # Сделать названия колонок, как в 9 строчке ('1', '2', ...)
+    df = df[10:]
+    df.fillna('', inplace=True)  # Заменить NaN на пустые значения
+    df.columns = df.columns.map(str)
+    df = df.applymap(lambda x: x.strip() if isinstance(x, str) else x)
+    df.columns = [str(i) for i in range(1, df.columns.__len__() + 1)]
+
+    current_rows = len(df)
+    rows_to_add = 4 - (current_rows % 4)
+    df_to_append = pd.DataFrame(np.empty((rows_to_add, len(df.columns)), dtype=object), columns=df.columns)
+    df_to_append[:] = ''
+    df = pd.concat([df, df_to_append], ignore_index=True)
+
+    # Форматирование из "dry" в Dry
+    df['5'] = df['5'].str.replace('\"dry\"', 'Dry')
+    df['6'] = df['6'].str.replace('\"dry\"', 'Dry')
+
+    # Перемещение столбцов 1 0
+    indices = df[df['14'].isin([1, 0])].index
+    df.loc[indices, '15'] = df.loc[indices, '14']
+    df.loc[indices, '14'] = ''
+
+    # Перемещение приоритетов
+    matches = df['13'].str.match(r'[A-Z]$').fillna(False)
+    indices = df[matches].index
+    df.loc[indices, '14'] = df.loc[indices, '13']
+    df.loc[indices, '13'] = ''
+
+    # Перемещение типа протоколов
+    matches = df['12'].str.match('[A-Z]{1}[A-Z]*P$').fillna(False)
+    indices = df[matches].index
+    df.loc[indices, '13'] = df.loc[indices, '12']
+    df.loc[indices, '12'] = ''
+    for group_index in range(len(df.iloc[::4])):
+        group = df.iloc[4 * group_index:4 * (group_index + 1)]
+        pattern_inp_out = r"([A-Z]{2,3}\s?\d{4}[A-Z]?)"
+        pattern_contour = r'^[a-zA-Z]+$'
+
+        mask = group['1'].str.match(pattern_contour).fillna(False)  # Маска для поиска контура
+        type_df = group[mask]
+        if not type_df.empty:  # Если есть название контура
+            type_row = type_df.index[0]
+            type_value = group.loc[type_row, '1']
+        else:  # Если нет названия контура
+            type_row = ''
+            type_value = ''
+
+        mask = group['1'] != ''  # Маска для поиска строк, где есть значения
+        lower_rows = group[mask]
+        if (lower_rows['1'] == type_value).any():  # Если содержит тип
+            lower_rows = lower_rows.drop(lower_rows[lower_rows['1'] == type_value].index)
+            remaining_indexes = lower_rows.index
+        else:  # Если не содержит тип
+            remaining_indexes = lower_rows.index
+
+        # Для каждого элемента определяется верхняя и нижняя граница поиска
+        ranges = process_ranges(remaining_indexes, group)
+
+        for i in range(len(remaining_indexes)):
+            cols = dict.fromkeys(
+                ['Лист', 'Индекс группы', 'Индекс в группе', 'Тип', 'Поз. КИП', 'Месторасположение', 'Мнемосхема 1',
+                 'Мнемосхема 2', 'input', 'input_signal', 'output', 'output_signal', 'Период записи',
+                 'Единицы измерения', 'Шкала', 'Тип регулировки/действие регулировки', 'HH_perc_real', 'HH_protocol',
+                 'HH_priority', 'H_perc_real', 'H_protocol', 'H_priority', 'L_perc_real', 'L_protocol', 'L_priority',
+                 'LL_perc_real', 'LL_protocol', 'LL_priority', '1/0', 'Короткий и длинный комментарий',
+                 'Дополнительный комментарий', 'Схемы контура', 'Схемы логические', 'Изм'])
+            cols['Лист'] = str(sheet_names[sheet_index])
+            cols['Индекс группы'] = group_index
+            cols['Индекс в группе'] = (remaining_indexes[i] - 8) % 4
+            cols['Тип'] = type_value
+            cols['Поз. КИП'] = group.loc[remaining_indexes[i], '1']
+            filtered_test = group[group['3'] != '']
+            cols['Месторасположение'] = group.loc[group['2'] != '', '2'].values[0]
+            cols['Мнемосхема 1'] = filtered_test.iloc[0, 2] if len(filtered_test) > 0 else ''
+            cols['Мнемосхема 2'] = filtered_test.iloc[1, 2] if len(filtered_test) > 1 else ''
+
+            v = group.loc[ranges[remaining_indexes[i]][0]:ranges[remaining_indexes[i]][1]]
+            matches_5 = v['5'].str.findall(pattern_inp_out)
+            matches_6 = v['6'].str.findall(pattern_inp_out)
+
+            matches_from = [item for sublist in matches_5.dropna().values.tolist() for item in sublist]
+            matches_to = [item for sublist in matches_6.dropna().values.tolist() for item in sublist]
+            cols['input'] = matches_from if matches_from else ''
+            cols['output'] = matches_to if matches_to else ''
+
+            mask_input = ~v['5'].str.contains(pattern_inp_out, na=False)
+            mask_output = ~v['6'].str.contains(pattern_inp_out, na=False)
+            cols['input_signal'] = filter_list(list(filter(bool, v.loc[mask_input, '5'].tolist())))
+            cols['output_signal'] = filter_list(list(filter(bool, v.loc[mask_output, '6'].tolist())))
+
+            cols['Период записи'] = group.iloc[1, 6]
+            cols['Единицы измерения'] = group.iloc[1, 7]
+            cols['Шкала'] = group.iloc[1, 8]
+            cols['Тип регулировки/действие регулировки'] = group.loc[remaining_indexes[i], '10']
+            cols['Схемы контура'] = next((x for x in group.loc[:, '18'] if x != ''), None)
+            cols['Изм'] = group.iloc[1, 19]
+
+            if i == 0:
+                for index, value in enumerate(["HH", "H", "L", "LL"]):
+                    cols[f"{value}_perc_real"] = group.iloc[index, 11]
+                    cols[f"{value}_protocol"] = group.iloc[index, 12]
+                    cols[f"{value}_priority"] = group.iloc[index, 13]
+                add_comment = group.loc[:, '17'].tolist()
+                add_comment = [x for x in add_comment if x != '']
+                describe = group.loc[:, '16'].tolist()
+                describe = [x for x in describe if x != '']
+                if len(add_comment) > 0:  # Есть дополнительный комментарий
+                    cols['Короткий и длинный комментарий'] = describe
+                else:
+                    cols['Короткий и длинный комментарий'] = ' '.join(describe)
+
+                cols['Дополнительный комментарий'] = add_comment
+                cols['1/0'] = '1' if group.iloc[1, 14] == 1 and group.iloc[2, 14] == 0 else ''
+                cols['Схемы логические'] = next((x for x in group.loc[:, '19'] if x != ''), None)
+            result.append(cols)
+
+cleaned_list = []
+for dictionary in result:
+    cleaned_dict = clean_dict(dictionary)
+    cleaned_list.append(cleaned_dict)
+
+one_row = pd.DataFrame(cleaned_list)
+
+current_datetime = datetime.datetime.now()
+formatted_datetime = current_datetime.strftime("%Y-%m-%d_%H-%M")
+output_file_name = f"output_{formatted_datetime}.xlsx"
+one_row.to_excel(output_file_name,index=False)
+print(f"Файл успешно обработан. Результат в файле output {output_file_name}")
