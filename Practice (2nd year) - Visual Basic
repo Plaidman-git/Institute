@@ -1,0 +1,17 @@
+Public Class Form1
+    Dim a, b, Delta, s
+    Public Function y(x)
+        y = 5 * x ^ 2 + 4
+    End Function
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        s = 0
+        a = CSng(TextBox2.Text)
+        b = CSng(TextBox3.Text)
+        Delta = CDec(TextBox5.Text)
+        For x = a To (b - Delta) Step Delta
+            s = s + Delta * 0.5 * (y(x) + y(x + Delta))
+        Next x
+        MsgBox("Integral of the function is " & s)
+    End Sub
+
+End Class
