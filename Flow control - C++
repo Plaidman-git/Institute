@@ -1,0 +1,62 @@
+// Файл CurrentThreadDemo.java 
+// Управление главным потоком. 
+class CurrentThreadDemo { 
+    public static void main(String args[]) { 
+        Thread t = Thread.currentThread(); // Ссылка на главный поток
+        System.out.println("Текущий поток: " + t); 
+// Изменить имя потока 
+        t.setName("My Thread"); 
+        System.out.println("После изменения имени: " + t); 
+        try { 
+            for(int n = 5; n > 0; n--) { 
+                System.out.println(n); 
+                Thread.sleep(1000); // Засыпаем на 1000 миллисекунд или 1 сек 
+            } 
+        } 
+        catch (InterruptedException e) { 
+            System.out.println("Главный поток завершен"); 
+        } 
+    } 
+}
+
+// Файл ThreadDemo.java
+// Создание второго потока.
+class NewThread implements Runnable {
+    Thread t; // Ссылка на поток
+    NewThread() { // Конструктор
+// Создать новый, второй поток.
+        t = new Thread(this, "Demo Thread"); // (1)Создание объекта класса
+Thread
+        System.out.println("Дочерний поток: " + t);
+        t.start(); // (2) Стартовать поток, вызывается run()
+    }
+// Это точка входа во второй поток.
+    public void run() { // (3)Переопределение run()
+        try {
+            for(int i = 5; i > 0; i--) {
+                System.out.println("Дочерний поток: " + i);
+                Thread.sleep(500);
+            }
+        }
+        catch (InterruptedException e) {
+            System.out.println(
+                                "Прерывание дочернего потока.");
+        }
+        System.out.println("Завершение дочернего потока.");
+    }
+}
+class ThreadDemo {
+    public static void main(String args[]) {
+        new NewThread(); // (4) Создать новый поток
+        try {
+            for(int i = 5; i > 0; i--) {
+                System.out.println("Главный поток: " + i);
+                Thread.sleep(1000);
+            }
+        }
+        catch (InterruptedException e) {
+            System.out.println("Прерывание главного потока.");
+        }
+        System.out.println("Завершение главного потока.");
+    }
+}
