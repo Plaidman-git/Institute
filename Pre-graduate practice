@@ -1,0 +1,1131 @@
+main_menu.py
+
+from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
+    QMetaObject, QObject, QPoint, QRect,
+    QSize, QTime, QUrl, Qt)
+from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
+    QFont, QFontDatabase, QGradient, QIcon,
+    QImage, QKeySequence, QLinearGradient, QPainter,
+    QPalette, QPixmap, QRadialGradient, QTransform)
+from PySide6.QtWidgets import (QApplication, QMainWindow, QPushButton, QSizePolicy,
+    QWidget)
+import sys
+from symptoms import Ui_Symptoms
+from identity_type import Ui_Identity_Type
+from information import Ui_Information
+class Ui_MainWindow(object):
+    def openWindow1(self):
+        self.window = QMainWindow()
+        self.ui = Ui_Symptoms()
+        self.ui.setupUi(self.window)
+        self.window.show()
+    def openWindow2(self):
+        self.window = QMainWindow()
+        self.ui = Ui_Identity_Type()
+        self.ui.setupUi(self.window)
+        self.window.show()
+    def openWindow3(self):
+        self.window = QMainWindow()
+        self.ui = Ui_Information()
+        self.ui.setupUi(self.window)
+        self.window.show()
+    def setupUi(self, MainWindow):
+        if not MainWindow.objectName():
+            MainWindow.setObjectName(u"MainWindow")
+        MainWindow.resize(421, 211)
+        MainWindow.setAutoFillBackground(False)
+        MainWindow.setStyleSheet(u"background-color: qlineargradient(spread:pad, x1:1, y1:1, x2:0, y2:0, stop:0 rgba(81, 0, 135, 255), stop:0.427447 rgba(41, 61, 132, 235), stop:1 rgba(155, 79, 165, 255));\n"
+"")
+        self.centralwidget = QWidget(MainWindow)
+        self.centralwidget.setObjectName(u"centralwidget")
+        self.pushButton = QPushButton(self.centralwidget)
+        self.pushButton.setObjectName(u"pushButton")
+        self.pushButton.setGeometry(QRect(20, 20, 381, 51))
+        self.pushButton.setCursor(QCursor(Qt.PointingHandCursor))
+        self.pushButton.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.pushButton.clicked.connect(self.openWindow1)
+        self.pushButton_2 = QPushButton(self.centralwidget)
+        self.pushButton_2.setObjectName(u"pushButton_2")
+        self.pushButton_2.setGeometry(QRect(20, 80, 381, 51))
+        self.pushButton_2.setCursor(QCursor(Qt.PointingHandCursor))
+        self.pushButton_2.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.pushButton_2.clicked.connect(self.openWindow2)
+        self.pushButton_3 = QPushButton(self.centralwidget)
+        self.pushButton_3.setObjectName(u"pushButton_3")
+        self.pushButton_3.setGeometry(QRect(20, 140, 381, 51))
+        self.pushButton_3.setCursor(QCursor(Qt.PointingHandCursor))
+        self.pushButton_3.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.pushButton_3.clicked.connect(self.openWindow3)
+        MainWindow.setCentralWidget(self.centralwidget)
+        self.retranslateUi(MainWindow)
+        QMetaObject.connectSlotsByName(MainWindow)
+    # setupUi
+    def retranslateUi(self, MainWindow):
+        MainWindow.setWindowTitle(QCoreApplication.translate("MainWindow", u"PsyHelper", None))
+        self.pushButton.setText(QCoreApplication.translate("MainWindow", u"\u041e\u043f\u0440\u0435\u0434\u0435\u043b\u0438\u0442\u044c \u0432\u0435\u0440\u043e\u044f\u0442\u043d\u044b\u0435 \u0440\u0430\u0441\u0441\u0442\u0440\u043e\u0439\u0441\u0442\u0432\u0430 \u043f\u043e \u0441\u0438\u043c\u043f\u0442\u043e\u043c\u0430\u043c", None))
+        self.pushButton_2.setText(QCoreApplication.translate("MainWindow", u"\u041e\u043f\u0440\u0435\u0434\u0435\u043b\u0438\u0442\u044c \u0442\u0438\u043f \u043b\u0438\u0447\u043d\u043e\u0441\u0442\u0438", None))
+        self.pushButton_3.setText(QCoreApplication.translate("MainWindow", u"\u0418\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044f", None))
+    # retranslateUi
+if __name__ == "__main__":
+    app = QApplication(sys.argv)
+    window = QMainWindow()
+    ui = Ui_MainWindow()
+    ui.setupUi(window)
+    window.show()
+sys.exit(app.exec())
+
+symptoms.py
+
+from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
+    QMetaObject, QObject, QPoint, QRect,
+    QSize, QTime, QUrl, Qt)
+from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
+    QFont, QFontDatabase, QGradient, QIcon,
+    QImage, QKeySequence, QLinearGradient, QPainter,
+    QPalette, QPixmap, QRadialGradient, QTransform)
+from PySide6.QtWidgets import (QApplication, QCheckBox, QDialog, QLabel,
+    QPushButton, QSizePolicy, QWidget)
+class Ui_Symptoms(object):
+    def calculate_symptoms(self, Symptoms):
+        r1 = 0
+        r2 = 0
+        r3 = 0
+        r4 = 0
+        r5 = 0
+        r6 = 0
+        r7 = 0
+        r8 = 0
+        r9 = 0
+        r10 = 0
+        r11 = 0
+        r12 = 0
+        if self.checkBox.isChecked():
+            # Бессонница
+            r1 = r1 + 1
+            r2 = r2 + 1
+            r3 = r3 + 1
+            r4 = r4 + 1
+        if self.checkBox_2.isChecked():
+            # Повышенная тревожность
+            r1 = r1 + 1
+            r2 = r2 + 1
+            r3 = r3 + 1
+            r4 = r4 + 1
+        if self.checkBox_3.isChecked():
+            # Панические атаки
+            r2 = 3
+        if self.checkBox_4.isChecked():
+            # Тревога при социальном взаимодействии
+            r3 = r3 + 1
+        if self.checkBox_8.isChecked():
+            # Беспокойство в связи с разлукой
+            r4 = r4 + 1
+        if self.checkBox_7.isChecked():
+            # Продолжительная грусть
+            r5 = r5 + 1
+            r6 = r6 + 1
+            r7 = r7 + 1
+        if self.checkBox_5.isChecked():
+            # Раздражительность
+            r5 = r5 + 1
+            r6 = r6 + 1
+            r7 = r7 + 1
+            r11 = r11 + 1
+        if self.checkBox_6.isChecked():
+            # Чувство опустошённости
+            r5 = r5 + 1
+            r6 = r6 + 1
+            r7 = r7 + 1
+        if self.checkBox_12.isChecked():
+            # Потеря интереса ко всем занятиям
+            r5 = r5 + 1
+            r6 = r6 + 1
+            r7 = r7 + 1
+        if self.checkBox_11.isChecked():
+            # Снижение концентрации, рассеянность
+            r5 = r5 + 1
+            r6 = r6 + 1
+            r7 = r7 + 1
+        if self.checkBox_9.isChecked():
+            # Навязчивое чувство вины
+            r5 = r5 + 1
+            r6 = r6 + 1
+            r7 = r7 + 1
+        if self.checkBox_10.isChecked():
+            # Низкая самооценка
+            r5 = r5 + 1
+            r6 = r6 + 1
+            r7 = r7 + 1
+        if self.checkBox_16.isChecked():
+            # Отсутствие веры в будущее
+            r5 = r5 + 1
+            r6 = r6 + 1
+            r7 = r7 + 1
+        if self.checkBox_13.isChecked():
+            # Изменение аппетита
+            r5 = r5 + 1
+            r6 = r6 + 1
+            r7 = r7 + 1
+            r10 = r10 + 1
+        if self.checkBox_14.isChecked():
+            # Усталость, измотанность, упадок сил
+            r5 = r5 + 1
+            r6 = r6 + 1
+            r7 = r7 + 1
+        if self.checkBox_28.isChecked():
+            # Пониженное настроение
+            r5 = r5 + 1
+            r6 = r6 + 1
+            r7 = r7 + 1
+        if self.checkBox_23.isChecked():
+            # Повышенное настроение
+            r7 = r7 + 1
+            r9 = r9 + 1
+        if self.checkBox_20.isChecked():
+            # Стремление к деятельности
+            r7 = r7 + 1
+        if self.checkBox_22.isChecked():
+            # Повышенная самооценка
+            r7 = r7 + 1
+        if self.checkBox_27.isChecked():
+            # Снижение потребности во сне
+            r7 = r7 + 1
+        if self.checkBox_25.isChecked():
+            # Повышенная разговорчивость
+            r7 = r7 + 1
+        if self.checkBox_26.isChecked():
+            # Импульсивность
+            r7 = r7 + 1
+        if self.checkBox_32.isChecked():
+            # Навязчивые воспоминания, кошмары
+            r8 = r8 + 1
+        if self.checkBox_30.isChecked():
+            # Бредовые мысли
+            r9 = r9 + 1
+        if self.checkBox_18.isChecked():
+            # Галлюцинации
+            r9 = r9 + 1
+        if self.checkBox_21.isChecked():
+            # Озабоченность едой, массой тела
+            r10 = r10 + 1
+        if self.checkBox_17.isChecked():
+            # Враждебное поведение, злость к окружающим
+            r11 = r11 + 1
+        if self.checkBox_31.isChecked():
+            # Трудности в освоении навыков
+            r12 = r12 + 1
+        if self.checkBox_19.isChecked():
+            # Трудности с коммуникацией
+            r3 = r3 + 1
+            r12 = r12 + 1
+        if self.checkBox_29.isChecked():
+            # Негибкий круг интересов
+            r12 = r12 + 1
+        if self.checkBox_15.isChecked():
+            # Мысли о смерти и самоубийстве
+            r5 = 12
+            # Если есть такие мысли, значит депрессия точно есть
+            r7 = r7 + 1
+        if r5 == 0:
+            r7 = 0
+            # Если нет признаков депрессии, то это точно не биполярное расстройство
+        v1 = r1 / 2 * 100
+        v2 = r2 / 3 * 100
+        v3 = r3 / 4 * 100
+        v4 = r4 / 3 * 100
+        v5 = r5 / 12 * 100
+        v6 = r6 / 11 * 100
+        v7 = r7 / 18 * 100
+        v8 = r8 / 1 * 100
+        v9 = r9 / 3 * 100
+        v10 = r10 / 2 * 100
+        v11 = r11 / 2 * 100
+        v12 = r12 / 3 * 100
+        self.label_24.setText(str(int(v1)))
+        self.label_22.setText(str(int(v2)))
+        self.label_14.setText(str(int(v3)))
+        self.label_17.setText(str(int(v4)))
+        self.label_16.setText(str(int(v5)))
+        self.label_20.setText(str(int(v6)))
+        self.label_23.setText(str(int(v7)))
+        self.label_15.setText(str(int(v8)))
+        self.label_19.setText(str(int(v9)))
+        self.label_18.setText(str(int(v10)))
+        self.label_21.setText(str(int(v11)))
+        self.label_25.setText(str(int(v12)))
+    def setupUi(self, Symptoms):
+        Symptoms.setObjectName(u"Symptoms")
+        Symptoms.resize(645, 661)
+        Symptoms.setStyleSheet(u"background-color: qlineargradient(spread:pad, x1:1, y1:1, x2:0, y2:0, stop:0 rgba(81, 0, 135, 255), stop:0.427447 rgba(41, 61, 132, 235), stop:1 rgba(155, 79, 165, 255));\n"
+"")
+        self.label = QLabel(Symptoms)
+        self.label.setObjectName(u"label")
+        self.label.setGeometry(QRect(10, 10, 601, 16))
+        self.label.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.checkBox = QCheckBox(Symptoms)
+        self.checkBox.setObjectName(u"checkBox")
+        self.checkBox.setGeometry(QRect(10, 30, 281, 20))
+        self.checkBox.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.checkBox_2 = QCheckBox(Symptoms)
+        self.checkBox_2.setObjectName(u"checkBox_2")
+        self.checkBox_2.setGeometry(QRect(10, 50, 281, 20))
+        self.checkBox_2.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.checkBox_3 = QCheckBox(Symptoms)
+        self.checkBox_3.setObjectName(u"checkBox_3")
+        self.checkBox_3.setGeometry(QRect(10, 70, 281, 20))
+        self.checkBox_3.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.checkBox_4 = QCheckBox(Symptoms)
+        self.checkBox_4.setObjectName(u"checkBox_4")
+        self.checkBox_4.setGeometry(QRect(10, 90, 281, 20))
+        self.checkBox_4.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.checkBox_5 = QCheckBox(Symptoms)
+        self.checkBox_5.setObjectName(u"checkBox_5")
+        self.checkBox_5.setGeometry(QRect(10, 150, 281, 20))
+        self.checkBox_5.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.checkBox_6 = QCheckBox(Symptoms)
+        self.checkBox_6.setObjectName(u"checkBox_6")
+        self.checkBox_6.setGeometry(QRect(10, 170, 281, 20))
+        self.checkBox_6.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.checkBox_7 = QCheckBox(Symptoms)
+        self.checkBox_7.setObjectName(u"checkBox_7")
+        self.checkBox_7.setGeometry(QRect(10, 130, 281, 20))
+        self.checkBox_7.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.checkBox_8 = QCheckBox(Symptoms)
+        self.checkBox_8.setObjectName(u"checkBox_8")
+        self.checkBox_8.setGeometry(QRect(10, 110, 281, 20))
+        self.checkBox_8.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.checkBox_9 = QCheckBox(Symptoms)
+        self.checkBox_9.setObjectName(u"checkBox_9")
+        self.checkBox_9.setGeometry(QRect(10, 230, 281, 20))
+        self.checkBox_9.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.checkBox_10 = QCheckBox(Symptoms)
+        self.checkBox_10.setObjectName(u"checkBox_10")
+        self.checkBox_10.setGeometry(QRect(10, 250, 281, 20))
+        self.checkBox_10.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.checkBox_11 = QCheckBox(Symptoms)
+        self.checkBox_11.setObjectName(u"checkBox_11")
+        self.checkBox_11.setGeometry(QRect(10, 210, 281, 20))
+        self.checkBox_11.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.checkBox_12 = QCheckBox(Symptoms)
+        self.checkBox_12.setObjectName(u"checkBox_12")
+        self.checkBox_12.setGeometry(QRect(10, 190, 281, 20))
+        self.checkBox_12.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.checkBox_13 = QCheckBox(Symptoms)
+        self.checkBox_13.setObjectName(u"checkBox_13")
+        self.checkBox_13.setGeometry(QRect(10, 310, 281, 20))
+        self.checkBox_13.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.checkBox_14 = QCheckBox(Symptoms)
+        self.checkBox_14.setObjectName(u"checkBox_14")
+        self.checkBox_14.setGeometry(QRect(10, 330, 281, 20))
+        self.checkBox_14.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.checkBox_15 = QCheckBox(Symptoms)
+        self.checkBox_15.setObjectName(u"checkBox_15")
+        self.checkBox_15.setGeometry(QRect(10, 290, 281, 20))
+        self.checkBox_15.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.checkBox_16 = QCheckBox(Symptoms)
+        self.checkBox_16.setObjectName(u"checkBox_16")
+        self.checkBox_16.setGeometry(QRect(10, 270, 281, 20))
+        self.checkBox_16.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.checkBox_17 = QCheckBox(Symptoms)
+        self.checkBox_17.setObjectName(u"checkBox_17")
+        self.checkBox_17.setGeometry(QRect(310, 250, 301, 20))
+        self.checkBox_17.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.checkBox_18 = QCheckBox(Symptoms)
+        self.checkBox_18.setObjectName(u"checkBox_18")
+        self.checkBox_18.setGeometry(QRect(310, 210, 301, 20))
+        self.checkBox_18.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.checkBox_19 = QCheckBox(Symptoms)
+        self.checkBox_19.setObjectName(u"checkBox_19")
+        self.checkBox_19.setGeometry(QRect(310, 290, 301, 20))
+        self.checkBox_19.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.checkBox_20 = QCheckBox(Symptoms)
+        self.checkBox_20.setObjectName(u"checkBox_20")
+        self.checkBox_20.setGeometry(QRect(310, 70, 301, 20))
+        self.checkBox_20.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.checkBox_21 = QCheckBox(Symptoms)
+        self.checkBox_21.setObjectName(u"checkBox_21")
+        self.checkBox_21.setGeometry(QRect(310, 230, 301, 20))
+        self.checkBox_21.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.checkBox_22 = QCheckBox(Symptoms)
+        self.checkBox_22.setObjectName(u"checkBox_22")
+        self.checkBox_22.setGeometry(QRect(310, 90, 301, 20))
+        self.checkBox_22.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.checkBox_23 = QCheckBox(Symptoms)
+        self.checkBox_23.setObjectName(u"checkBox_23")
+        self.checkBox_23.setGeometry(QRect(310, 50, 301, 20))
+        self.checkBox_23.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.checkBox_25 = QCheckBox(Symptoms)
+        self.checkBox_25.setObjectName(u"checkBox_25")
+        self.checkBox_25.setGeometry(QRect(310, 130, 301, 20))
+        self.checkBox_25.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.checkBox_26 = QCheckBox(Symptoms)
+        self.checkBox_26.setObjectName(u"checkBox_26")
+        self.checkBox_26.setGeometry(QRect(310, 150, 301, 20))
+        self.checkBox_26.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.checkBox_27 = QCheckBox(Symptoms)
+        self.checkBox_27.setObjectName(u"checkBox_27")
+        self.checkBox_27.setGeometry(QRect(310, 110, 301, 20))
+        self.checkBox_27.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.checkBox_28 = QCheckBox(Symptoms)
+        self.checkBox_28.setObjectName(u"checkBox_28")
+        self.checkBox_28.setGeometry(QRect(310, 30, 301, 20))
+        self.checkBox_28.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.checkBox_29 = QCheckBox(Symptoms)
+        self.checkBox_29.setObjectName(u"checkBox_29")
+        self.checkBox_29.setGeometry(QRect(310, 310, 301, 20))
+        self.checkBox_29.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.checkBox_30 = QCheckBox(Symptoms)
+        self.checkBox_30.setObjectName(u"checkBox_30")
+        self.checkBox_30.setGeometry(QRect(310, 190, 301, 20))
+        self.checkBox_30.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.checkBox_31 = QCheckBox(Symptoms)
+        self.checkBox_31.setObjectName(u"checkBox_31")
+        self.checkBox_31.setGeometry(QRect(310, 270, 301, 20))
+        self.checkBox_31.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.checkBox_32 = QCheckBox(Symptoms)
+        self.checkBox_32.setObjectName(u"checkBox_32")
+        self.checkBox_32.setGeometry(QRect(310, 170, 301, 20))
+        self.checkBox_32.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.pushButton = QPushButton(Symptoms)
+        self.pushButton.setObjectName(u"pushButton")
+        self.pushButton.setGeometry(QRect(10, 360, 601, 41))
+        self.pushButton.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+
+        self.pushButton.clicked.connect(self.calculate_symptoms)
+
+        self.label_2 = QLabel(Symptoms)
+        self.label_2.setObjectName(u"label_2")
+        self.label_2.setGeometry(QRect(10, 410, 541, 16))
+        self.label_2.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.label_3 = QLabel(Symptoms)
+        self.label_3.setObjectName(u"label_3")
+        self.label_3.setGeometry(QRect(10, 430, 541, 16))
+        self.label_3.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.label_4 = QLabel(Symptoms)
+        self.label_4.setObjectName(u"label_4")
+        self.label_4.setGeometry(QRect(10, 450, 541, 16))
+        self.label_4.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.label_5 = QLabel(Symptoms)
+        self.label_5.setObjectName(u"label_5")
+        self.label_5.setGeometry(QRect(10, 510, 541, 16))
+        self.label_5.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.label_6 = QLabel(Symptoms)
+        self.label_6.setObjectName(u"label_6")
+        self.label_6.setGeometry(QRect(10, 490, 541, 16))
+        self.label_6.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.label_7 = QLabel(Symptoms)
+        self.label_7.setObjectName(u"label_7")
+        self.label_7.setGeometry(QRect(10, 470, 541, 16))
+        self.label_7.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.label_8 = QLabel(Symptoms)
+        self.label_8.setObjectName(u"label_8")
+        self.label_8.setGeometry(QRect(10, 570, 541, 16))
+        self.label_8.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.label_9 = QLabel(Symptoms)
+        self.label_9.setObjectName(u"label_9")
+        self.label_9.setGeometry(QRect(10, 550, 541, 16))
+        self.label_9.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.label_10 = QLabel(Symptoms)
+        self.label_10.setObjectName(u"label_10")
+        self.label_10.setGeometry(QRect(10, 530, 541, 16))
+        self.label_10.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.label_11 = QLabel(Symptoms)
+        self.label_11.setObjectName(u"label_11")
+        self.label_11.setGeometry(QRect(10, 630, 541, 16))
+        self.label_11.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.label_12 = QLabel(Symptoms)
+        self.label_12.setObjectName(u"label_12")
+        self.label_12.setGeometry(QRect(10, 610, 541, 16))
+        self.label_12.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.label_13 = QLabel(Symptoms)
+        self.label_13.setObjectName(u"label_13")
+        self.label_13.setGeometry(QRect(10, 590, 541, 16))
+        self.label_13.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.label_14 = QLabel(Symptoms)
+        self.label_14.setObjectName(u"label_14")
+        self.label_14.setGeometry(QRect(560, 450, 49, 16))
+        self.label_14.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.label_15 = QLabel(Symptoms)
+        self.label_15.setObjectName(u"label_15")
+        self.label_15.setGeometry(QRect(560, 550, 49, 16))
+        self.label_15.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.label_16 = QLabel(Symptoms)
+        self.label_16.setObjectName(u"label_16")
+        self.label_16.setGeometry(QRect(560, 490, 49, 16))
+        self.label_16.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.label_17 = QLabel(Symptoms)
+        self.label_17.setObjectName(u"label_17")
+        self.label_17.setGeometry(QRect(560, 470, 49, 16))
+        self.label_17.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.label_18 = QLabel(Symptoms)
+        self.label_18.setObjectName(u"label_18")
+        self.label_18.setGeometry(QRect(560, 590, 49, 16))
+        self.label_18.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.label_19 = QLabel(Symptoms)
+        self.label_19.setObjectName(u"label_19")
+        self.label_19.setGeometry(QRect(560, 570, 49, 16))
+        self.label_19.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.label_20 = QLabel(Symptoms)
+        self.label_20.setObjectName(u"label_20")
+        self.label_20.setGeometry(QRect(560, 510, 49, 16))
+        self.label_20.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.label_21 = QLabel(Symptoms)
+        self.label_21.setObjectName(u"label_21")
+        self.label_21.setGeometry(QRect(560, 610, 49, 16))
+        self.label_21.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.label_22 = QLabel(Symptoms)
+        self.label_22.setObjectName(u"label_22")
+        self.label_22.setGeometry(QRect(560, 430, 49, 16))
+        self.label_22.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.label_23 = QLabel(Symptoms)
+        self.label_23.setObjectName(u"label_23")
+        self.label_23.setGeometry(QRect(560, 530, 49, 16))
+        self.label_23.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.label_24 = QLabel(Symptoms)
+        self.label_24.setObjectName(u"label_24")
+        self.label_24.setGeometry(QRect(560, 410, 49, 16))
+        self.label_24.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.label_25 = QLabel(Symptoms)
+        self.label_25.setObjectName(u"label_25")
+        self.label_25.setGeometry(QRect(560, 630, 49, 16))
+        self.label_25.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+
+        self.retranslateUi(Symptoms)
+
+        QMetaObject.connectSlotsByName(Symptoms)
+    # setupUi
+
+    def retranslateUi(self, Symptoms):
+        Symptoms.setWindowTitle(QCoreApplication.translate("Symptoms", u"\u041e\u043f\u0440\u0435\u0434\u0435\u043b\u0438\u0442\u044c \u0432\u0435\u0440\u043e\u044f\u0442\u043d\u044b\u0435 \u0440\u0430\u0441\u0441\u0442\u0440\u043e\u0439\u0441\u0442\u0432\u0430 \u043f\u043e \u0441\u0438\u043c\u043f\u0442\u043e\u043c\u0430\u043c", None))
+        self.label.setText(QCoreApplication.translate("Symptoms", u"\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0441\u0438\u043c\u043f\u0442\u043e\u043c\u044b:", None))
+        self.checkBox.setText(QCoreApplication.translate("Symptoms", u"\u0411\u0435\u0441\u0441\u043e\u043d\u043d\u0438\u0446\u0430", None))
+        self.checkBox_2.setText(QCoreApplication.translate("Symptoms", u"\u041f\u043e\u0432\u044b\u0448\u0435\u043d\u043d\u0430\u044f \u0442\u0440\u0435\u0432\u043e\u0436\u043d\u043e\u0441\u0442\u044c", None))
+        self.checkBox_3.setText(QCoreApplication.translate("Symptoms", u"\u041f\u0430\u043d\u0438\u0447\u0435\u0441\u043a\u0438\u0435 \u0430\u0442\u0430\u043a\u0438", None))
+        self.checkBox_4.setText(QCoreApplication.translate("Symptoms", u"\u0422\u0440\u0435\u0432\u043e\u0433\u0430 \u043f\u0440\u0438 \u0441\u043e\u0446\u0438\u0430\u043b\u044c\u043d\u043e\u043c \u0432\u0437\u0430\u0438\u043c\u043e\u0434\u0435\u0439\u0441\u0442\u0432\u0438\u0438", None))
+        self.checkBox_5.setText(QCoreApplication.translate("Symptoms", u"\u0420\u0430\u0437\u0434\u0440\u0430\u0436\u0438\u0442\u0435\u043b\u044c\u043d\u043e\u0441\u0442\u044c", None))
+        self.checkBox_6.setText(QCoreApplication.translate("Symptoms", u"\u0427\u0443\u0432\u0441\u0442\u0432\u043e \u043e\u043f\u0443\u0441\u0442\u043e\u0448\u0451\u043d\u043d\u043e\u0441\u0442\u0438", None))
+        self.checkBox_7.setText(QCoreApplication.translate("Symptoms", u"\u041f\u0440\u043e\u0434\u043e\u043b\u0436\u0438\u0442\u0435\u043b\u044c\u043d\u0430\u044f \u0433\u0440\u0443\u0441\u0442\u044c", None))
+        self.checkBox_8.setText(QCoreApplication.translate("Symptoms", u"\u0411\u0435\u0441\u043f\u043e\u043a\u043e\u0439\u0441\u0442\u0432\u043e \u0432 \u0441\u0432\u044f\u0437\u0438 \u0441 \u0440\u0430\u0437\u043b\u0443\u043a\u043e\u0439", None))
+        self.checkBox_9.setText(QCoreApplication.translate("Symptoms", u"\u041d\u0430\u0432\u044f\u0437\u0447\u0438\u0432\u043e\u0435 \u0447\u0443\u0432\u0441\u0442\u0432\u043e \u0432\u0438\u043d\u044b", None))
+        self.checkBox_10.setText(QCoreApplication.translate("Symptoms", u"\u041d\u0438\u0437\u043a\u0430\u044f \u0441\u0430\u043c\u043e\u043e\u0446\u0435\u043d\u043a\u0430", None))
+        self.checkBox_11.setText(QCoreApplication.translate("Symptoms", u"\u0421\u043d\u0438\u0436\u0435\u043d\u0438\u0435 \u043a\u043e\u043d\u0446\u0435\u043d\u0442\u0440\u0430\u0446\u0438\u0438, \u0440\u0430\u0441\u0441\u0435\u044f\u043d\u043d\u043e\u0441\u0442\u044c", None))
+        self.checkBox_12.setText(QCoreApplication.translate("Symptoms", u"\u041f\u043e\u0442\u0435\u0440\u044f \u0438\u043d\u0442\u0435\u0440\u0435\u0441\u0430 \u043a\u043e \u0432\u0441\u0435\u043c \u0437\u0430\u043d\u044f\u0442\u0438\u044f\u043c", None))
+        self.checkBox_13.setText(QCoreApplication.translate("Symptoms", u"\u0418\u0437\u043c\u0435\u043d\u0435\u043d\u0438\u0435 \u0430\u043f\u043f\u0435\u0442\u0438\u0442\u0430", None))
+        self.checkBox_14.setText(QCoreApplication.translate("Symptoms", u"\u0423\u0441\u0442\u0430\u043b\u043e\u0441\u0442\u044c, \u0438\u0437\u043c\u043e\u0442\u0430\u043d\u043d\u043e\u0441\u0442\u044c, \u0443\u043f\u0430\u0434\u043e\u043a \u0441\u0438\u043b", None))
+        self.checkBox_15.setText(QCoreApplication.translate("Symptoms", u"\u041c\u044b\u0441\u043b\u0438 \u043e \u0441\u043c\u0435\u0440\u0442\u0438 \u0438 \u0441\u0430\u043c\u043e\u0443\u0431\u0438\u0439\u0441\u0442\u0432\u0435", None))
+        self.checkBox_16.setText(QCoreApplication.translate("Symptoms", u"\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0438\u0435 \u0432\u0435\u0440\u044b \u0432 \u0441\u0432\u0435\u0442\u043b\u043e\u0435 \u0431\u0443\u0434\u0443\u0449\u0435\u0435", None))
+        self.checkBox_17.setText(QCoreApplication.translate("Symptoms", u"\u0412\u0440\u0430\u0436\u0434\u0435\u0431\u043d\u043e\u0435 \u043f\u043e\u0432\u0435\u0434\u0435\u043d\u0438\u0435, \u0437\u043b\u043e\u0441\u0442\u044c \u043a \u043e\u043a\u0440\u0443\u0436\u0430\u044e\u0449\u0438\u043c", None))
+        self.checkBox_18.setText(QCoreApplication.translate("Symptoms", u"\u0413\u0430\u043b\u043b\u044e\u0446\u0438\u043d\u0430\u0446\u0438\u0438", None))
+        self.checkBox_19.setText(QCoreApplication.translate("Symptoms", u"\u0422\u0440\u0443\u0434\u043d\u043e\u0441\u0442\u0438 \u0441 \u043a\u043e\u043c\u043c\u0443\u043d\u0438\u043a\u0430\u0446\u0438\u0435\u0439", None))
+        self.checkBox_20.setText(QCoreApplication.translate("Symptoms", u"\u0421\u0442\u0440\u0435\u043c\u043b\u0435\u043d\u0438\u0435 \u043a \u0434\u0435\u044f\u0442\u0435\u043b\u044c\u043d\u043e\u0441\u0442\u0438 ", None))
+        self.checkBox_21.setText(QCoreApplication.translate("Symptoms", u"\u041e\u0437\u0430\u0431\u043e\u0447\u0435\u043d\u043d\u043e\u0441\u0442\u044c \u0435\u0434\u043e\u0439, \u043c\u0430\u0441\u0441\u043e\u0439 \u0442\u0435\u043b\u0430", None))
+        self.checkBox_22.setText(QCoreApplication.translate("Symptoms", u"\u041f\u043e\u0432\u044b\u0448\u0435\u043d\u043d\u0430\u044f \u0441\u0430\u043c\u043e\u043e\u0446\u0435\u043d\u043a\u0430", None))
+        self.checkBox_23.setText(QCoreApplication.translate("Symptoms", u"\u041f\u043e\u0432\u044b\u0448\u0435\u043d\u043d\u043e\u0435 \u043d\u0430\u0441\u0442\u0440\u043e\u0435\u043d\u0438\u0435", None))
+        self.checkBox_25.setText(QCoreApplication.translate("Symptoms", u"\u041f\u043e\u0432\u044b\u0448\u0435\u043d\u043d\u0430\u044f \u0440\u0430\u0437\u0433\u043e\u0432\u043e\u0440\u0447\u0438\u0432\u043e\u0441\u0442\u044c", None))
+        self.checkBox_26.setText(QCoreApplication.translate("Symptoms", u"\u0418\u043c\u043f\u0443\u043b\u044c\u0441\u0438\u0432\u043d\u043e\u0441\u0442\u044c", None))
+        self.checkBox_27.setText(QCoreApplication.translate("Symptoms", u"\u0421\u043d\u0438\u0436\u0435\u043d\u0438\u0435 \u043f\u043e\u0442\u0440\u0435\u0431\u043d\u043e\u0441\u0442\u0438 \u0432\u043e \u0441\u043d\u0435", None))
+        self.checkBox_28.setText(QCoreApplication.translate("Symptoms", u"\u041f\u043e\u043d\u0438\u0436\u0435\u043d\u043d\u043e\u0435 \u043d\u0430\u0441\u0442\u0440\u043e\u0435\u043d\u0438\u0435", None))
+        self.checkBox_29.setText(QCoreApplication.translate("Symptoms", u"\u041d\u0435\u0433\u0438\u0431\u043a\u0438\u0439 \u043a\u0440\u0443\u0433 \u0438\u043d\u0442\u0435\u0440\u0435\u0441\u043e\u0432", None))
+        self.checkBox_30.setText(QCoreApplication.translate("Symptoms", u"\u0411\u0440\u0435\u0434\u043e\u0432\u044b\u0435 \u043c\u044b\u0441\u043b\u0438", None))
+        self.checkBox_31.setText(QCoreApplication.translate("Symptoms", u"\u0422\u0440\u0443\u0434\u043d\u043e\u0441\u0442\u0438 \u0432 \u043e\u0441\u0432\u043e\u0435\u043d\u0438\u0438 \u043d\u0430\u0432\u044b\u043a\u043e\u0432", None))
+        self.checkBox_32.setText(QCoreApplication.translate("Symptoms", u"\u041d\u0430\u0432\u044f\u0437\u0447\u0438\u0432\u044b\u0435 \u0432\u043e\u0441\u043f\u043e\u043c\u0438\u043d\u0430\u043d\u0438\u044f, \u043a\u043e\u0448\u043c\u0430\u0440\u044b", None))
+        self.pushButton.setText(QCoreApplication.translate("Symptoms", u"\u0420\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442\u044b", None))
+        self.label_2.setText(QCoreApplication.translate("Symptoms", u"\u0413\u0435\u043d\u0435\u0440\u0430\u043b\u0438\u0437\u043e\u0432\u0430\u043d\u043d\u043e\u0435 \u0442\u0440\u0435\u0432\u043e\u0436\u043d\u043e\u0435 \u0440\u0430\u0441\u0441\u0442\u0440\u043e\u0439\u0441\u0442\u0432\u043e", None))
+        self.label_3.setText(QCoreApplication.translate("Symptoms", u"\u041f\u0430\u043d\u0438\u0447\u0435\u0441\u043a\u043e\u0435 \u0442\u0440\u0435\u0432\u043e\u0436\u043d\u043e\u0435 \u0440\u0430\u0441\u0441\u0442\u0440\u043e\u0439\u0441\u0442\u0432\u043e", None))
+        self.label_4.setText(QCoreApplication.translate("Symptoms", u"\u0421\u043e\u0446\u0438\u0430\u043b\u044c\u043d\u043e\u0435 \u0442\u0440\u0435\u0432\u043e\u0436\u043d\u043e\u0435 \u0440\u0430\u0441\u0441\u0442\u0440\u043e\u0439\u0441\u0442\u0432\u043e", None))
+        self.label_5.setText(QCoreApplication.translate("Symptoms", u"\u0414\u0438\u0441\u0442\u0438\u043c\u0438\u044f", None))
+        self.label_6.setText(QCoreApplication.translate("Symptoms", u"\u0414\u0435\u043f\u0440\u0435\u0441\u0441\u0438\u044f", None))
+        self.label_7.setText(QCoreApplication.translate("Symptoms", u"\u0422\u0440\u0435\u0432\u043e\u0436\u043d\u043e\u0435 \u0440\u0430\u0441\u0441\u0442\u0440\u043e\u0439\u0441\u0442\u0432\u043e, \u0432\u044b\u0437\u0432\u0430\u043d\u043d\u043e\u0435 \u0440\u0430\u0437\u043b\u0443\u043a\u043e\u0439", None))
+        self.label_8.setText(QCoreApplication.translate("Symptoms", u"\u0428\u0438\u0437\u043e\u0444\u0440\u0435\u043d\u0438\u044f", None))
+        self.label_9.setText(QCoreApplication.translate("Symptoms", u"\u041f\u043e\u0441\u0442\u0442\u0440\u0430\u0432\u043c\u0430\u0442\u0438\u0447\u0435\u0441\u043a\u043e\u0435 \u0440\u0430\u0441\u0441\u0442\u0440\u043e\u0439\u0441\u0442\u0432\u043e", None))
+        self.label_10.setText(QCoreApplication.translate("Symptoms", u"\u0411\u0438\u043f\u043e\u043b\u044f\u0440\u043d\u043e\u0435 \u0440\u0430\u0441\u0441\u0442\u0440\u043e\u0439\u0441\u0442\u0432\u043e", None))
+        self.label_11.setText(QCoreApplication.translate("Symptoms", u"\u041d\u0430\u0440\u0443\u0448\u0435\u043d\u0438\u044f \u0446\u0435\u043d\u0442\u0440\u0430\u043b\u044c\u043d\u043e\u0439 \u043d\u0435\u0440\u0432\u043d\u043e\u0439 \u0441\u0438\u0441\u0442\u0435\u043c\u044b", None))
+        self.label_12.setText(QCoreApplication.translate("Symptoms", u"\u0414\u0438\u0441\u0441\u043e\u0446\u0438\u0430\u043b\u044c\u043d\u043e\u0435 \u0440\u0430\u0441\u0441\u0442\u0440\u043e\u0439\u0441\u0442\u0432\u043e", None))
+        self.label_13.setText(QCoreApplication.translate("Symptoms", u"\u0420\u0430\u0441\u0442\u0440\u043e\u0439\u0441\u0442\u0432\u043e \u043f\u0438\u0449\u0435\u0432\u043e\u0433\u043e \u043f\u043e\u0432\u0435\u0434\u0435\u043d\u0438\u044f", None))
+        self.label_14.setText(QCoreApplication.translate("Symptoms", u"-", None))
+        self.label_15.setText(QCoreApplication.translate("Symptoms", u"-", None))
+        self.label_16.setText(QCoreApplication.translate("Symptoms", u"-", None))
+        self.label_17.setText(QCoreApplication.translate("Symptoms", u"-", None))
+        self.label_18.setText(QCoreApplication.translate("Symptoms", u"-", None))
+        self.label_19.setText(QCoreApplication.translate("Symptoms", u"-", None))
+        self.label_20.setText(QCoreApplication.translate("Symptoms", u"-", None))
+        self.label_21.setText(QCoreApplication.translate("Symptoms", u"-", None))
+        self.label_22.setText(QCoreApplication.translate("Symptoms", u"-", None))
+        self.label_23.setText(QCoreApplication.translate("Symptoms", u"-", None))
+        self.label_24.setText(QCoreApplication.translate("Symptoms", u"-", None))
+        self.label_25.setText(QCoreApplication.translate("Symptoms", u"-", None))
+    # retranslateUi
+
+identity_type.py
+
+from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
+    QMetaObject, QObject, QPoint, QRect,
+    QSize, QTime, QUrl, Qt)
+from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
+    QFont, QFontDatabase, QGradient, QIcon,
+    QImage, QKeySequence, QLinearGradient, QPainter,
+    QPalette, QPixmap, QRadialGradient, QTransform)
+from PySide6.QtWidgets import (QApplication, QDialog, QHBoxLayout, QLabel,
+    QPushButton, QRadioButton, QSizePolicy, QWidget)
+class Ui_Identity_Type(object):
+    def calculate_identity_type(self, Dialog):
+        identity_score = 0
+        fool_test = 0
+        if self.var1_1.isChecked():
+            fool_test += 1
+        if self.var1_2.isChecked():
+            identity_score += 0.5
+            fool_test += 1
+        if self.var1_3.isChecked():
+            identity_score += 1
+            fool_test += 1
+        if self.var2_3.isChecked():
+            fool_test +=1
+        if self.var2_2.isChecked():
+            identity_score += 0.5
+            fool_test += 1
+        if self.var2_1.isChecked():
+            identity_score += 1
+            fool_test += 1
+        if self.var3_1.isChecked():
+            fool_test += 1
+        if self.var3_2.isChecked():
+            identity_score += 0.5
+            fool_test += 1
+        if self.var3_3.isChecked():
+            identity_score += 1
+            fool_test += 1
+        if self.var4_3.isChecked():
+            fool_test += 1
+        if self.var4_2.isChecked():
+            identity_score += 0.5
+            fool_test += 1
+        if self.var4_1.isChecked():
+            identity_score += 1
+            fool_test += 1
+        if self.var5_3.isChecked():
+            fool_test += 1
+        if self.var5_2.isChecked():
+            identity_score += 0.5
+            fool_test += 1
+        if self.var5_1.isChecked():
+            identity_score += 1
+            fool_test += 1
+        if self.var6_3.isChecked():
+            fool_test += 1
+        if self.var6_2.isChecked():
+            identity_score += 0.5
+            fool_test += 1
+        if self.var6_1.isChecked():
+            identity_score += 1
+            fool_test += 1
+        if self.var7_1.isChecked():
+            fool_test += 1
+        if self.vear7_2.isChecked():
+            identity_score += 0.5
+            fool_test += 1
+        if self.radioButton_19.isChecked():
+            identity_score += 1
+            fool_test += 1
+        score = int(identity_score / 7 * 100)
+        self.result1.setText(str(score))
+        if score <= 33:
+            self.result2.setText("интроверт")
+        elif score >=66:
+            self.result2.setText("экстраверт")
+        else:
+            self.result2.setText("амбиверт")
+        if fool_test != 7:
+            self.result1.setText("ошибка")
+            self.result2.setText("ответили не на все вопросы")
+    def setupUi(self, Dialog):
+        if not Dialog.objectName():
+            Dialog.setObjectName(u"Dialog")
+        Dialog.resize(520, 460)
+        Dialog.setStyleSheet(u"background-color: qlineargradient(spread:pad, x1:1, y1:1, x2:0, y2:0, stop:0 rgba(81, 0, 135, 255), stop:0.427447 rgba(41, 61, 132, 235), stop:1 rgba(155, 79, 165, 255));\n"
+"")
+        self.result_button = QPushButton(Dialog)
+        self.result_button.setObjectName(u"result_button")
+        self.result_button.setGeometry(QRect(10, 360, 501, 41))
+        self.result_button.setCursor(QCursor(Qt.PointingHandCursor))
+        self.result_button.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.result_button.clicked.connect(self.calculate_identity_type)
+        self.question1 = QLabel(Dialog)
+        self.question1.setObjectName(u"question1")
+        self.question1.setGeometry(QRect(10, 10, 501, 16))
+        self.question1.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.question2 = QLabel(Dialog)
+        self.question2.setObjectName(u"question2")
+        self.question2.setGeometry(QRect(10, 60, 501, 16))
+        self.question2.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.question3 = QLabel(Dialog)
+        self.question3.setObjectName(u"question3")
+        self.question3.setGeometry(QRect(10, 110, 501, 16))
+        self.question3.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.question4 = QLabel(Dialog)
+        self.question4.setObjectName(u"question4")
+        self.question4.setGeometry(QRect(10, 160, 501, 16))
+        self.question4.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.question5 = QLabel(Dialog)
+        self.question5.setObjectName(u"question5")
+        self.question5.setGeometry(QRect(10, 210, 501, 16))
+        self.question5.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.question6 = QLabel(Dialog)
+        self.question6.setObjectName(u"question6")
+        self.question6.setGeometry(QRect(10, 260, 501, 16))
+        self.question6.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.question7 = QLabel(Dialog)
+        self.question7.setObjectName(u"question7")
+        self.question7.setGeometry(QRect(10, 310, 501, 16))
+        self.question7.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.you1 = QLabel(Dialog)
+        self.you1.setObjectName(u"you1")
+        self.you1.setGeometry(QRect(10, 410, 421, 21))
+        self.you1.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.result1 = QLabel(Dialog)
+        self.result1.setObjectName(u"result1")
+        self.result1.setGeometry(QRect(430, 410, 81, 21))
+        self.result1.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.you2 = QLabel(Dialog)
+        self.you2.setObjectName(u"you2")
+        self.you2.setGeometry(QRect(10, 430, 121, 21))
+        self.you2.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.result2 = QLabel(Dialog)
+        self.result2.setObjectName(u"result2")
+        self.result2.setGeometry(QRect(130, 430, 381, 21))
+        self.result2.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.widget = QWidget(Dialog)
+        self.widget.setObjectName(u"widget")
+        self.widget.setGeometry(QRect(10, 30, 160, 22))
+        self.horizontalLayout = QHBoxLayout(self.widget)
+        self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
+        self.var1_3 = QRadioButton(self.widget)
+        self.var1_3.setObjectName(u"var1_3")
+        self.var1_3.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.horizontalLayout.addWidget(self.var1_3)
+        self.var1_2 = QRadioButton(self.widget)
+        self.var1_2.setObjectName(u"var1_2")
+        self.var1_2.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.horizontalLayout.addWidget(self.var1_2)
+        self.var1_1 = QRadioButton(self.widget)
+        self.var1_1.setObjectName(u"var1_1")
+        self.var1_1.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.horizontalLayout.addWidget(self.var1_1)
+        self.widget1 = QWidget(Dialog)
+        self.widget1.setObjectName(u"widget1")
+        self.widget1.setGeometry(QRect(10, 80, 160, 22))
+        self.horizontalLayout_2 = QHBoxLayout(self.widget1)
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.var2_3 = QRadioButton(self.widget1)
+        self.var2_3.setObjectName(u"var2_3")
+        self.var2_3.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.horizontalLayout_2.addWidget(self.var2_3)
+        self.var2_2 = QRadioButton(self.widget1)
+        self.var2_2.setObjectName(u"var2_2")
+        self.var2_2.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.horizontalLayout_2.addWidget(self.var2_2)
+        self.var2_1 = QRadioButton(self.widget1)
+        self.var2_1.setObjectName(u"var2_1")
+        self.var2_1.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.horizontalLayout_2.addWidget(self.var2_1)
+        self.widget2 = QWidget(Dialog)
+        self.widget2.setObjectName(u"widget2")
+        self.widget2.setGeometry(QRect(10, 130, 160, 22))
+        self.horizontalLayout_3 = QHBoxLayout(self.widget2)
+        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
+        self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
+        self.var3_3 = QRadioButton(self.widget2)
+        self.var3_3.setObjectName(u"var3_3")
+        self.var3_3.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.horizontalLayout_3.addWidget(self.var3_3)
+        self.var3_2 = QRadioButton(self.widget2)
+        self.var3_2.setObjectName(u"var3_2")
+        self.var3_2.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.horizontalLayout_3.addWidget(self.var3_2)
+        self.var3_1 = QRadioButton(self.widget2)
+        self.var3_1.setObjectName(u"var3_1")
+        self.var3_1.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.horizontalLayout_3.addWidget(self.var3_1)
+        self.widget3 = QWidget(Dialog)
+        self.widget3.setObjectName(u"widget3")
+        self.widget3.setGeometry(QRect(10, 180, 160, 22))
+        self.horizontalLayout_4 = QHBoxLayout(self.widget3)
+        self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
+        self.horizontalLayout_4.setContentsMargins(0, 0, 0, 0)
+        self.var4_3 = QRadioButton(self.widget3)
+        self.var4_3.setObjectName(u"var4_3")
+        self.var4_3.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.horizontalLayout_4.addWidget(self.var4_3)
+        self.var4_2 = QRadioButton(self.widget3)
+        self.var4_2.setObjectName(u"var4_2")
+        self.var4_2.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.horizontalLayout_4.addWidget(self.var4_2)
+        self.var4_1 = QRadioButton(self.widget3)
+        self.var4_1.setObjectName(u"var4_1")
+        self.var4_1.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.horizontalLayout_4.addWidget(self.var4_1)
+        self.widget4 = QWidget(Dialog)
+        self.widget4.setObjectName(u"widget4")
+        self.widget4.setGeometry(QRect(10, 230, 160, 22))
+        self.horizontalLayout_5 = QHBoxLayout(self.widget4)
+        self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
+        self.horizontalLayout_5.setContentsMargins(0, 0, 0, 0)
+        self.var5_3 = QRadioButton(self.widget4)
+        self.var5_3.setObjectName(u"var5_3")
+        self.var5_3.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.horizontalLayout_5.addWidget(self.var5_3)
+        self.var5_2 = QRadioButton(self.widget4)
+        self.var5_2.setObjectName(u"var5_2")
+        self.var5_2.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.horizontalLayout_5.addWidget(self.var5_2)
+        self.var5_1 = QRadioButton(self.widget4)
+        self.var5_1.setObjectName(u"var5_1")
+        self.var5_1.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.horizontalLayout_5.addWidget(self.var5_1)
+        self.widget5 = QWidget(Dialog)
+        self.widget5.setObjectName(u"widget5")
+        self.widget5.setGeometry(QRect(10, 280, 160, 22))
+        self.horizontalLayout_6 = QHBoxLayout(self.widget5)
+        self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
+        self.horizontalLayout_6.setContentsMargins(0, 0, 0, 0)
+        self.var6_1 = QRadioButton(self.widget5)
+        self.var6_1.setObjectName(u"var6_1")
+        self.var6_1.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.horizontalLayout_6.addWidget(self.var6_1)
+        self.var6_3 = QRadioButton(self.widget5)
+        self.var6_3.setObjectName(u"var6_3")
+        self.var6_3.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.horizontalLayout_6.addWidget(self.var6_3)
+        self.var6_2 = QRadioButton(self.widget5)
+        self.var6_2.setObjectName(u"var6_2")
+        self.var6_2.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.horizontalLayout_6.addWidget(self.var6_2)
+        self.widget6 = QWidget(Dialog)
+        self.widget6.setObjectName(u"widget6")
+        self.widget6.setGeometry(QRect(10, 330, 160, 22))
+        self.horizontalLayout_7 = QHBoxLayout(self.widget6)
+        self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
+        self.horizontalLayout_7.setContentsMargins(0, 0, 0, 0)
+        self.vear7_2 = QRadioButton(self.widget6)
+        self.vear7_2.setObjectName(u"vear7_2")
+        self.vear7_2.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.horizontalLayout_7.addWidget(self.vear7_2)
+        self.radioButton_19 = QRadioButton(self.widget6)
+        self.radioButton_19.setObjectName(u"radioButton_19")
+        self.radioButton_19.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.horizontalLayout_7.addWidget(self.radioButton_19)
+        self.var7_1 = QRadioButton(self.widget6)
+        self.var7_1.setObjectName(u"var7_1")
+        self.var7_1.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.horizontalLayout_7.addWidget(self.var7_1)
+        self.retranslateUi(Dialog)
+        QMetaObject.connectSlotsByName(Dialog)
+    # setupUi
+    def retranslateUi(self, Dialog):
+        Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"\u041e\u043f\u0440\u0435\u0434\u0435\u043b\u0438\u0442\u044c \u0442\u0438\u043f \u043b\u0438\u0447\u043d\u043e\u0441\u0442\u0438", None))
+        self.result_button.setText(QCoreApplication.translate("Dialog", u"\u0420\u0435\u0437\u0443\u043b\u044c\u0442\u0430\u0442", None))
+        self.question1.setText(QCoreApplication.translate("Dialog", u"1. \u0412\u0430\u0441 \u043c\u043e\u0436\u043d\u043e \u043d\u0430\u0437\u0432\u0430\u0442\u044c \u0441\u043f\u043e\u043a\u043e\u0439\u043d\u044b\u043c \u0438 \u0441\u0434\u0435\u0440\u0436\u0430\u043d\u043d\u044b\u043c \u0447\u0435\u043b\u043e\u0432\u0435\u043a\u043e\u043c?", None))
+        self.question2.setText(QCoreApplication.translate("Dialog", u"2. \u0412\u044b \u043e\u0447\u0435\u043d\u044c \u0440\u0430\u0437\u0433\u043e\u0432\u043e\u0440\u0447\u0438\u0432\u044b\u0439 \u0447\u0435\u043b\u043e\u0432\u0435\u043a?", None))
+        self.question3.setText(QCoreApplication.translate("Dialog", u"3. \u0412\u044b \u0431\u044b \u0432\u044b\u0431\u0440\u0430\u043b\u0438 \u0447\u0442\u0435\u043d\u0438\u0435, \u043f\u0440\u043e\u0441\u043c\u043e\u0442\u0440 \u0444\u0438\u043b\u044c\u043c\u043e\u0432 \u0432\u043c\u0435\u0441\u0442\u043e \u043e\u0431\u0449\u0435\u043d\u0438\u044f \u0441 \u043b\u044e\u0434\u044c\u043c\u0438?", None))
+        self.question4.setText(QCoreApplication.translate("Dialog", u"4. \u0412\u0430\u043c \u043d\u0440\u0430\u0432\u0438\u0442\u0441\u044f \u0437\u043d\u0430\u043a\u043e\u043c\u0438\u0442\u044c\u0441\u044f \u0441 \u043d\u043e\u0432\u044b\u043c\u0438 \u043b\u044e\u0434\u044c\u043c\u0438?", None))
+        self.question5.setText(QCoreApplication.translate("Dialog", u"5. \u0421\u043f\u043e\u0441\u043e\u0431\u043d\u044b \u043b\u0438 \u0432\u044b \u0440\u0430\u0441\u0441\u043b\u0430\u0431\u0438\u0442\u044c\u0441\u044f \u0438 \u043f\u043e\u043b\u0443\u0447\u0430\u0442\u044c \u0443\u0434\u043e\u0432\u043e\u043b\u044c\u0441\u0442\u0432\u0438\u0435 \u043d\u0430 \u0448\u0443\u043c\u043d\u044b\u0445 \u0432\u0435\u0447\u0435\u0440\u0438\u043d\u043a\u0430\u0445?", None))
+        self.question6.setText(QCoreApplication.translate("Dialog", u"6. \u0427\u0430\u0449\u0435 \u0432\u0441\u0435\u0433\u043e, \u0432\u044b \u0441\u0430\u043c\u0438 \u043f\u0440\u043e\u044f\u0432\u043b\u044f\u0435\u0442\u0435 \u0438\u043d\u0438\u0446\u0438\u0430\u0442\u0438\u0432\u0443 \u043f\u0440\u0438 \u0437\u043d\u0430\u043a\u043e\u043c\u0441\u0442\u0432\u0435 \u0441 \u043d\u043e\u0432\u044b\u043c\u0438 \u043b\u044e\u0434\u044c\u043c\u0438?", None))
+        self.question7.setText(QCoreApplication.translate("Dialog", u"7. \u0412\u044b \u0441\u043a\u043b\u043e\u043d\u043d\u044b \u0434\u0435\u0440\u0436\u0430\u0442\u044c\u0441\u044f \u043d\u0430 \u0437\u0430\u0434\u043d\u0435\u043c \u043f\u043b\u0430\u043d\u0435 \u0432 \u0440\u0430\u0437\u043b\u0438\u0447\u043d\u044b\u0445 \u043c\u0435\u0440\u043e\u043f\u0440\u0438\u044f\u0442\u0438\u044f\u0445?", None))
+        self.you1.setText(QCoreApplication.translate("Dialog", u"\u041f\u043e \u0448\u043a\u0430\u043b\u0435 \u043e\u0442 0 \u0434\u043e 100, \u0433\u0434\u0435 0 - \u0438\u043d\u0442\u0440\u043e\u0432\u0435\u0440\u0442, \u0430 100 - \u044d\u043a\u0441\u0442\u0440\u0430\u0432\u0435\u0440\u0442, \u0412\u044b \u043d\u0430\u0431\u0440\u0430\u043b\u0438:", None))
+        self.result1.setText("")
+        self.you2.setText(QCoreApplication.translate("Dialog", u"\u0421\u043b\u0435\u0434\u043e\u0432\u0430\u0442\u0435\u043b\u044c\u043d\u043e, \u0412\u044b", None))
+        self.result2.setText("")
+        self.var1_3.setText(QCoreApplication.translate("Dialog", u"\u041d\u0435\u0442", None))
+        self.var1_2.setText(QCoreApplication.translate("Dialog", u"\u0418\u043d\u043e\u0433\u0434\u0430", None))
+        self.var1_1.setText(QCoreApplication.translate("Dialog", u"\u0414\u0430", None))
+        self.var2_3.setText(QCoreApplication.translate("Dialog", u"\u041d\u0435\u0442", None))
+        self.var2_2.setText(QCoreApplication.translate("Dialog", u"\u0418\u043d\u043e\u0433\u0434\u0430", None))
+        self.var2_1.setText(QCoreApplication.translate("Dialog", u"\u0414\u0430", None))
+        self.var3_3.setText(QCoreApplication.translate("Dialog", u"\u041d\u0435\u0442", None))
+        self.var3_2.setText(QCoreApplication.translate("Dialog", u"\u0418\u043d\u043e\u0433\u0434\u0430", None))
+        self.var3_1.setText(QCoreApplication.translate("Dialog", u"\u0414\u0430", None))
+        self.var4_3.setText(QCoreApplication.translate("Dialog", u"\u041d\u0435\u0442", None))
+        self.var4_2.setText(QCoreApplication.translate("Dialog", u"\u0418\u043d\u043e\u0433\u0434\u0430", None))
+        self.var4_1.setText(QCoreApplication.translate("Dialog", u"\u0414\u0430", None))
+        self.var5_3.setText(QCoreApplication.translate("Dialog", u"\u041d\u0435\u0442", None))
+        self.var5_2.setText(QCoreApplication.translate("Dialog", u"\u0418\u043d\u043e\u0433\u0434\u0430", None))
+        self.var5_1.setText(QCoreApplication.translate("Dialog", u"\u0414\u0430", None))
+        self.var6_1.setText(QCoreApplication.translate("Dialog", u"\u0414\u0430", None))
+        self.var6_3.setText(QCoreApplication.translate("Dialog", u"\u041d\u0435\u0442", None))
+        self.var6_2.setText(QCoreApplication.translate("Dialog", u"\u0418\u043d\u043e\u0433\u0434\u0430", None))
+        self.vear7_2.setText(QCoreApplication.translate("Dialog", u"\u0418\u043d\u043e\u0433\u0434\u0430", None))
+        self.radioButton_19.setText(QCoreApplication.translate("Dialog", u"\u041d\u0435\u0442", None))
+        self.var7_1.setText(QCoreApplication.translate("Dialog", u"\u0414\u0430", None))
+    # retranslateUi
+
+information.py
+
+from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
+    QMetaObject, QObject, QPoint, QRect,
+    QSize, QTime, QUrl, Qt)
+from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
+    QFont, QFontDatabase, QGradient, QIcon,
+    QImage, QKeySequence, QLinearGradient, QPainter,
+    QPalette, QPixmap, QRadialGradient, QTransform)
+from PySide6.QtWidgets import (QApplication, QDialog, QLabel, QPushButton,
+    QSizePolicy, QWidget)
+from PySide6.QtWidgets import (QApplication, QMainWindow, QPushButton, QSizePolicy,
+    QWidget)
+from gtr import Ui_GTR
+
+class Ui_Information(object):
+
+    def openGtr(self):
+        self.window = QMainWindow()
+        self.ui = Ui_GTR()
+        self.ui.setupUi(self.window)
+        self.window.show()
+    def setupUi(self, Dialog):
+        if not Dialog.objectName():
+            Dialog.setObjectName(u"Dialog")
+        Dialog.resize(400, 493)
+        Dialog.setStyleSheet(u"background-color: qlineargradient(spread:pad, x1:1, y1:1, x2:0, y2:0, stop:0 rgba(81, 0, 135, 255), stop:0.427447 rgba(41, 61, 132, 235), stop:1 rgba(155, 79, 165, 255));\n"
+"")
+        self.label = QLabel(Dialog)
+        self.label.setObjectName(u"label")
+        self.label.setGeometry(QRect(10, 10, 381, 16))
+        self.label.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.pushButton = QPushButton(Dialog)
+        self.pushButton.setObjectName(u"pushButton")
+        self.pushButton.setGeometry(QRect(10, 40, 381, 24))
+        self.pushButton.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+
+        self.pushButton.clicked.connect(self.openGtr)
+
+        self.pushButton_2 = QPushButton(Dialog)
+        self.pushButton_2.setObjectName(u"pushButton_2")
+        self.pushButton_2.setGeometry(QRect(10, 70, 381, 24))
+        self.pushButton_2.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.pushButton_3 = QPushButton(Dialog)
+        self.pushButton_3.setObjectName(u"pushButton_3")
+        self.pushButton_3.setGeometry(QRect(10, 100, 381, 24))
+        self.pushButton_3.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.pushButton_4 = QPushButton(Dialog)
+        self.pushButton_4.setObjectName(u"pushButton_4")
+        self.pushButton_4.setGeometry(QRect(10, 130, 381, 24))
+        self.pushButton_4.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.pushButton_5 = QPushButton(Dialog)
+        self.pushButton_5.setObjectName(u"pushButton_5")
+        self.pushButton_5.setGeometry(QRect(10, 160, 381, 24))
+        self.pushButton_5.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.pushButton_6 = QPushButton(Dialog)
+        self.pushButton_6.setObjectName(u"pushButton_6")
+        self.pushButton_6.setGeometry(QRect(10, 190, 381, 24))
+        self.pushButton_6.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.pushButton_7 = QPushButton(Dialog)
+        self.pushButton_7.setObjectName(u"pushButton_7")
+        self.pushButton_7.setGeometry(QRect(10, 220, 381, 24))
+        self.pushButton_7.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.pushButton_8 = QPushButton(Dialog)
+        self.pushButton_8.setObjectName(u"pushButton_8")
+        self.pushButton_8.setGeometry(QRect(10, 250, 381, 24))
+        self.pushButton_8.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.pushButton_9 = QPushButton(Dialog)
+        self.pushButton_9.setObjectName(u"pushButton_9")
+        self.pushButton_9.setGeometry(QRect(10, 280, 381, 24))
+        self.pushButton_9.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.pushButton_10 = QPushButton(Dialog)
+        self.pushButton_10.setObjectName(u"pushButton_10")
+        self.pushButton_10.setGeometry(QRect(10, 310, 381, 24))
+        self.pushButton_10.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.pushButton_11 = QPushButton(Dialog)
+        self.pushButton_11.setObjectName(u"pushButton_11")
+        self.pushButton_11.setGeometry(QRect(10, 340, 381, 24))
+        self.pushButton_11.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.pushButton_12 = QPushButton(Dialog)
+        self.pushButton_12.setObjectName(u"pushButton_12")
+        self.pushButton_12.setGeometry(QRect(10, 370, 381, 24))
+        self.pushButton_12.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.pushButton_13 = QPushButton(Dialog)
+        self.pushButton_13.setObjectName(u"pushButton_13")
+        self.pushButton_13.setGeometry(QRect(10, 400, 381, 24))
+        self.pushButton_13.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.pushButton_14 = QPushButton(Dialog)
+        self.pushButton_14.setObjectName(u"pushButton_14")
+        self.pushButton_14.setGeometry(QRect(10, 430, 381, 24))
+        self.pushButton_14.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.pushButton_15 = QPushButton(Dialog)
+        self.pushButton_15.setObjectName(u"pushButton_15")
+        self.pushButton_15.setGeometry(QRect(10, 460, 381, 24))
+        self.pushButton_15.setStyleSheet(u"color: white;\n"
+"font-weight: bold;")
+        self.retranslateUi(Dialog)
+        QMetaObject.connectSlotsByName(Dialog)
+    # setupUi
+    def retranslateUi(self, Dialog):
+        Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"\u0418\u043d\u0444\u043e\u0440\u043c\u0430\u0446\u0438\u044f", None))
+        self.label.setText(QCoreApplication.translate("Dialog", u"\u042d\u043b\u0435\u043a\u0442\u0440\u043e\u043d\u043d\u0430\u044f \u043f\u043e\u0447\u0442\u0430 \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u0447\u0438\u043a\u0430: knyazev.is.2002@gmail.com", None))
+        self.pushButton.setText(QCoreApplication.translate("Dialog", u"\u0413\u0435\u043d\u0435\u0440\u0430\u043b\u0438\u0437\u043e\u0432\u0430\u043d\u043d\u043e\u0435 \u0442\u0440\u0435\u0432\u043e\u0436\u043d\u043e\u0435 \u0440\u0430\u0441\u0441\u0442\u0440\u043e\u0439\u0441\u0442\u0432\u043e", None))
+        self.pushButton_2.setText(QCoreApplication.translate("Dialog", u"\u041f\u0430\u043d\u0438\u0447\u0435\u0441\u043a\u043e\u0435 \u0442\u0440\u0435\u0432\u043e\u0436\u043d\u043e\u0435 \u0440\u0430\u0441\u0441\u0442\u0440\u043e\u0439\u0441\u0442\u0432\u043e", None))
+        self.pushButton_3.setText(QCoreApplication.translate("Dialog", u"\u0421\u043e\u0446\u0438\u0430\u043b\u044c\u043d\u043e\u0435 \u0442\u0440\u0435\u0432\u043e\u0436\u043d\u043e\u0435 \u0440\u0430\u0441\u0441\u0442\u0440\u043e\u0439\u0441\u0442\u0432\u043e", None))
+        self.pushButton_4.setText(QCoreApplication.translate("Dialog", u"\u0422\u0440\u0435\u0432\u043e\u0436\u043d\u043e\u0435 \u0440\u0430\u0441\u0441\u0442\u0440\u043e\u0439\u0441\u0442\u0432\u043e, \u0432\u044b\u0437\u0432\u0430\u043d\u043d\u043e\u0435 \u0440\u0430\u0437\u043b\u0443\u043a\u043e\u0439", None))
+        self.pushButton_5.setText(QCoreApplication.translate("Dialog", u"\u0414\u0435\u043f\u0440\u0435\u0441\u0441\u0438\u044f", None))
+        self.pushButton_6.setText(QCoreApplication.translate("Dialog", u"\u0414\u0438\u0441\u0442\u0438\u043c\u0438\u044f", None))
+        self.pushButton_7.setText(QCoreApplication.translate("Dialog", u"\u0411\u0438\u043f\u043e\u043b\u044f\u0440\u043d\u043e\u0435 \u0440\u0430\u0441\u0441\u0442\u0440\u043e\u0439\u0441\u0442\u0432\u043e", None))
+        self.pushButton_8.setText(QCoreApplication.translate("Dialog", u"\u041f\u043e\u0441\u0442\u0442\u0440\u0430\u0432\u043c\u0430\u0442\u0438\u0447\u0435\u0441\u043a\u043e\u0435 \u0440\u0430\u0441\u0441\u0442\u0440\u043e\u0439\u0441\u0442\u0432\u043e", None))
+        self.pushButton_9.setText(QCoreApplication.translate("Dialog", u"\u0428\u0438\u0437\u043e\u0444\u0440\u0435\u043d\u0438\u044f", None))
+        self.pushButton_10.setText(QCoreApplication.translate("Dialog", u"\u0420\u0430\u0441\u0441\u0442\u0440\u043e\u0439\u0441\u0442\u0432\u043e \u043f\u0438\u0449\u0435\u0432\u043e\u0433\u043e \u043f\u043e\u0432\u0435\u0434\u0435\u043d\u0438\u044f", None))
+        self.pushButton_11.setText(QCoreApplication.translate("Dialog", u"\u0414\u0438\u0441\u0441\u043e\u0446\u0438\u0430\u043b\u044c\u043d\u043e\u0435 \u0440\u0430\u0441\u0441\u0442\u0440\u043e\u0439\u0441\u0442\u0432\u043e", None))
+        self.pushButton_12.setText(QCoreApplication.translate("Dialog", u"\u041d\u0430\u0440\u0443\u0448\u0435\u043d\u0438\u044f \u0446\u0435\u043d\u0442\u0440\u0430\u043b\u044c\u043d\u043e\u0439 \u043d\u0435\u0440\u0432\u043d\u043e\u0439 \u0441\u0438\u0441\u0442\u0435\u043c\u044b", None))
+        self.pushButton_13.setText(QCoreApplication.translate("Dialog", u"\u042d\u043a\u0441\u0442\u0440\u0430\u0432\u0435\u0440\u0441\u0438\u044f", None))
+        self.pushButton_14.setText(QCoreApplication.translate("Dialog", u"\u0418\u043d\u0442\u0440\u043e\u0432\u0435\u0440\u0441\u0438\u044f", None))
+        self.pushButton_15.setText(QCoreApplication.translate("Dialog", u"\u0410\u043c\u0431\u0438\u0432\u0435\u0440\u0441\u0438\u044f", None))
+    # retranslateUi
+
+gtr.py
+
+from PySide6.QtCore import (QCoreApplication, QDate, QDateTime, QLocale,
+    QMetaObject, QObject, QPoint, QRect,
+    QSize, QTime, QUrl, Qt)
+from PySide6.QtGui import (QBrush, QColor, QConicalGradient, QCursor,
+    QFont, QFontDatabase, QGradient, QIcon,
+    QImage, QKeySequence, QLinearGradient, QPainter,
+    QPalette, QPixmap, QRadialGradient, QTransform)
+from PySide6.QtWidgets import (QApplication, QDialog, QLabel, QSizePolicy,
+    QWidget)
+class Ui_GTR(object):
+    def setupUi(self, Dialog):
+        if not Dialog.objectName():
+            Dialog.setObjectName(u"Dialog")
+        Dialog.resize(514, 120)
+        self.label = QLabel(Dialog)
+        self.label.setObjectName(u"label")
+        self.label.setGeometry(QRect(10, 10, 441, 21))
+        self.label_2 = QLabel(Dialog)
+        self.label_2.setObjectName(u"label_2")
+        self.label_2.setGeometry(QRect(10, 30, 431, 16))
+        self.label_3 = QLabel(Dialog)
+        self.label_3.setObjectName(u"label_3")
+        self.label_3.setGeometry(QRect(10, 50, 401, 16))
+        self.label_4 = QLabel(Dialog)
+        self.label_4.setObjectName(u"label_4")
+        self.label_4.setGeometry(QRect(10, 70, 491, 16))
+        self.label_5 = QLabel(Dialog)
+        self.label_5.setObjectName(u"label_5")
+        self.label_5.setGeometry(QRect(10, 90, 301, 16))
+        self.retranslateUi(Dialog)
+        QMetaObject.connectSlotsByName(Dialog)
+    # setupUi
+    def retranslateUi(self, Dialog):
+        Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"\u0413\u0435\u043d\u0435\u0440\u0430\u043b\u0438\u0437\u043e\u0432\u0430\u043d\u043d\u043e\u0435 \u0442\u0440\u0435\u0432\u043e\u0436\u043d\u043e\u0435 \u0440\u0430\u0441\u0441\u0442\u0440\u043e\u0439\u0441\u0442\u0432\u043e", None))
+        self.label.setText(QCoreApplication.translate("Dialog", u"\u0413\u0435\u043d\u0435\u0440\u0430\u043b\u0438\u0437\u043e\u0432\u0430\u043d\u043d\u043e\u0435 \u0442\u0440\u0435\u0432\u043e\u0436\u043d\u043e\u0435 \u0440\u0430\u0441\u0441\u0442\u0440\u043e\u0439\u0441\u0442\u0432\u043e \u2014 \u044d\u0442\u043e \u043f\u0441\u0438\u0445\u0438\u0447\u0435\u0441\u043a\u043e\u0435 \u0437\u0430\u0431\u043e\u043b\u0435\u0432\u0430\u043d\u0438\u0435,", None))
+        self.label_2.setText(QCoreApplication.translate("Dialog", u"\u043f\u0440\u0438 \u043a\u043e\u0442\u043e\u0440\u043e\u043c \u0447\u0435\u043b\u043e\u0432\u0435\u043a \u043f\u043e\u0441\u0442\u043e\u044f\u043d\u043d\u043e \u0436\u0438\u0432\u0451\u0442 \u0441 \u0447\u0443\u0432\u0441\u0442\u0432\u043e\u043c \u0441\u0438\u043b\u044c\u043d\u043e\u0433\u043e \u0431\u0435\u0441\u043f\u043e\u043a\u043e\u0439\u0441\u0442\u0432\u0430.", None))
+        self.label_3.setText(QCoreApplication.translate("Dialog", u"\u0421\u043e \u0441\u0442\u043e\u0440\u043e\u043d\u044b \u043c\u043e\u0436\u0435\u0442 \u043f\u043e\u043a\u0430\u0437\u0430\u0442\u044c\u0441\u044f, \u0447\u0442\u043e \u044d\u0442\u043e \u0432\u043e\u043b\u043d\u0435\u043d\u0438\u0435 \u043f\u043e \u043f\u0443\u0441\u0442\u044f\u043a\u0430\u043c.", None))
+        self.label_4.setText(QCoreApplication.translate("Dialog", u"\u041d\u043e \u0434\u043b\u044f \u043f\u0430\u0446\u0438\u0435\u043d\u0442\u043e\u0432 \u0441 \u0442\u0430\u043a\u0438\u043c \u0440\u0430\u0441\u0441\u0442\u0440\u043e\u0439\u0441\u0442\u0432\u043e\u043c \u043d\u0435\u0437\u043d\u0430\u0447\u0438\u0442\u0435\u043b\u044c\u043d\u044b\u0445 \u043f\u0435\u0440\u0435\u0436\u0438\u0432\u0430\u043d\u0438\u0439 \u043d\u0435 \u0431\u044b\u0432\u0430\u0435\u0442 \u2014", None))
+        self.label_5.setText(QCoreApplication.translate("Dialog", u"\u0438\u0445 \u043d\u0435\u0440\u0432\u043d\u0430\u044f \u0441\u0438\u0441\u0442\u0435\u043c\u0430 \u0432\u0441\u0435\u0433\u0434\u0430 \u043d\u0430\u043f\u0440\u044f\u0436\u0435\u043d\u0430 \u0434\u043e \u043f\u0440\u0435\u0434\u0435\u043b\u0430.", None))
+    # retranslateUi
