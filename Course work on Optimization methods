@@ -1,0 +1,124 @@
+import numpy as np
+import matplotlib.pyplot as plt
+import scipy.integrate
+
+# Энергии активации прямой и обратной химических реакций.
+E1 = 3000   #  Дж/моль
+E2 = 28500  #  Дж/моль
+# Температура.
+T_01 = 1090+273.15 #  К
+T_095 = 142+273.15 #  K
+# Ограничение по температуре.
+T_max = 750 + 273.15 #  K
+# Универсальная газовая постоянная.
+R = 8.314   #  Дж/(моль*К)
+# Предэкспоненциальные множители уравнения Аррениуса.
+A1 = 0.2
+A2 = 1.8
+# Начальное значение концентрации вещества A в смеси A и B.
+c_a0 = 3000 # моль / м3
+# Степени превращения.
+x_all = np.array([0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.95])
+# Диапазон х для рисунка 1.
+x_odd = np.array([0.1, 0.3, 0.5, 0.7, 0.9])
+# Скорость потока.
+w = 0.02 # м/c
+
+T = np.linspace(T_01, T_095, len(x_all))
+
+# 2. Рассчитать по формуле (3) зависимость r(T) в интервале степеней превращения x = 0,1 ÷ 0,95.
+# Построить на одном рисунке (рисунке 1) семейство кривых r(T) при x = 0,1;x = 0,3;x = 0,5;x = 0,7;x = 0,9.
+
+# Формула (3)
+def r(T, x):
+    return A1 * np.exp(-E1/R/T) * c_a0 * (1 - x) - A2 * np.exp(-E2/R/T) * c_a0 * x
+
+r_T_x = []
+
+for i in range(len(x_odd)):
+    r_T_x.append([])
+    for j in range(len(T)):
+        r_T_x[i].append(r(T[j], x_odd[i]))
+
+# Рисунок 1
+plt.figure(1)
+plt.suptitle("Рисунок 1: r(T, x)")
+plt.xlabel("T, K")
+
+for i in range(len(x_odd)):
+    plt.plot(T, r_T_x[i])
+
+# 3. Рассчитать по уравнению (8) и построить (на рисунке 2) кривую оптимальных температур Toпт(x) [в °С].
+# Результаты расчета дополнительно представить в виде таблицы 1 при x = var.
+
+# Формула (8).
+def T_optimal(x):
+    return (E2 - E1) / R / np.log(A2 * E2 * x / A1 / E1 / (1 - x))
+
+T_optim = T_optimal(x_all)
+
+print('T_optim', list(T_optim))
+#T_optim[0] = T_max.
+
+plt.figure(2)
+plt.suptitle('Рисунок 2: T_optim(X)')
+plt.plot(x_all, list(map(lambda x: x - 273.15, T_optim)))
+plt.xlabel("x")
+plt.ylabel("T_optim, °C")
+
+# Таблица 1
+print('            Таблица 1           ')
+print('+------------------------------+')
+print('|      x |    T, K  |    T, °C |')
+print('+------------------------------+')
+
+for i in range(len(x_all)):
+    print("|%7.2f |%9.3f |%9.3f |" % (x_all[i],round(T_optim[i], 3),round(T_optim[i] - 273.15, 3)))
+print('+------------------------------+')
+
+# 4. Рассчитать по уравнению (13) и построить на рисунке 3 зависимость τопт = F1(Tопт(x), x)
+# и найти зависимость Tопт = F2(l), учитывая ограничение (9). Скорость потока w считать постоянной величиной.
+# Результаты вычислений свести в таблицу 2.
+# τ - это время пребывания реагентов в аппарате
+# T_optim не должна превышать T_max.
+T_optim_f = []
+
+for i in range(len(T_optim)):
+    if T_optim[i] > T_max:
+        T_optim_f.append(T_max)
+    else:
+        T_optim_f.append(T_optim[i])
+
+# Формула(13).
+def integral(x0, xk):
+    global c_a0
+    return c_a0 * scipy.integrate.quad(lambda x: 1 / r(T_optimal(x), x), x0, xk)[0]
+tau = []
+for i in x_all:
+    tau.append(integral(0.1, i))
+
+# Рисунок 3.
+plt.figure(3)
+plt.suptitle('τопт = F1(Tопт(x), x)')
+plt.plot(x_all, tau)
+plt.xlabel('x')
+plt.ylabel('τопт, c')
+
+l = [w * tau[i] for i in range(len(x_all))]
+
+print('                      Таблица 2                   ')
+print('+------------------------------------------------+')
+print('|      x |      τ | l = wτ | T_opt(x) | T_opt(l) |')
+print('+------------------------------------------------+')
+
+for i in range(len(x_all)):
+    print("|%7.2f |%7.3f |%7.3f |%9.3f |%9.3f |" % (x_all[i],round(tau[i], 3),round(l[i], 3), T_optim_f[i] - 273.15, T_optim_f[i]))
+
+# Рисунок 4.
+plt.figure(4)
+plt.suptitle('Τопт(l)')
+plt.plot(l, T_optim_f)
+plt.plot(l, T_optim, linestyle='--')
+plt.xlabel('l, м')
+plt.ylabel('Tопт, К')
+plt.show()
