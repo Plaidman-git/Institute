@@ -1,0 +1,47 @@
+import pandas as pd
+import numpy as np
+import multiprocessing as mp
+import time
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LinearRegression
+import sys
+
+size = []
+times = []
+def sum_column(df):
+    return df.sum()
+ 
+def multi():
+    times = []
+    sizes = []
+    for i in range(1,21):
+        df = pd.DataFrame(np.random.randint(0, 100, size=(i*10000, 100)))
+        start = time.time()
+        pool = mp.Pool(mp.cpu_count())
+        result = pool.map(sum_column, [df[i] for i in df])
+        pool.close()
+        pool.join()
+        times.append(time.time() - start)
+        sizes.append((sys.getsizeof(df)-144)/1048576) #Мегабайты
+        print(i)
+    return [sizes, times]
+
+def linear_regression():
+    X = np.array(sizes).reshape(-1,1)
+    y = np.array(times)
+    model = LinearRegression()
+    model.fit(X,y)
+    return [model.coef_, model.intercept_]
+
+if __name__ == '__main__':
+    mp.freeze_support()
+    sizes, times = multi()
+    plt.xlim(1, 175)
+    plt.plot(sizes,times)
+    plt.scatter(sizes,times)
+    coef, intercept = linear_regression()
+    print(coef,intercept)
+    # построение линейной регрессии
+    tmp = range(1,175,5)
+    plt.plot([i for i in tmp], [coef*i+intercept for i in tmp])
+    plt.show()
